@@ -16,6 +16,8 @@ public class Leaderboard : MonoBehaviour {
 	/*********************************************************************************************** VARIABLES & PROPERTIES */
 	#region VARIABLES & PROPERTIES
 
+	[SerializeField] private AudioClip sndChaChing;
+
 	private ILeaderboard _ldrToday;
 	private ILeaderboard _ldrWeekly;
 	private ILeaderboard _ldrAllTime;
@@ -28,6 +30,7 @@ public class Leaderboard : MonoBehaviour {
 	// misc state
 	private bool _didFirstAuth;
 	private Frog _frog;
+	private AudioSource _srcAudio;
 
 	#endregion
 
@@ -110,6 +113,7 @@ public class Leaderboard : MonoBehaviour {
 
 	public void BoughtTaps(int numTaps) {
 		_frog.ScoreTaps(numTaps, false);
+		_srcAudio.PlayOneShot(sndChaChing);
 
 		#if UNITY_ANDROID
 		Social.ReportScore(_frog.Taps, GPGSIds.leaderboard_top_frog, success => {
@@ -213,6 +217,8 @@ public class Leaderboard : MonoBehaviour {
 		Initialise();
 
 		_frog = FindObjectOfType<Frog>();
+
+		_srcAudio = GetComponent<AudioSource>();
 	}
 
 	#endregion
