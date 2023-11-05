@@ -1,0 +1,9 @@
+lastUpgrade=01012
+proj.pluginVersion=0.10.12
+proj.AppId=872568764297
+and.BundleId=org.nicknicknicknick.froggy
+proj.classDir=Assets%2fScripts%2fGPG
+proj.ConstantsClassName=GPGSIds
+and.ResourceData=%3c%3fxml+version%3d%221.0%22+encoding%3d%22utf-8%22%3f%3e%0a%3c%21--Google+Play+game+services+IDs.+Save+this+file+as+res%2fvalues%2fgames-ids.xml+in+your+project.--%3e%0a%3cresources%3e%0a++%3c%21--app_id--%3e%0a++%3cstring+name%3d%22app_id%22+translatable%3d%22false%22%3e872568764297%3c%2fstring%3e%0a++%3c%21--package_name--%3e%0a++%3cstring+name%3d%22package_name%22+translatable%3d%22false%22%3eorg.nicknicknicknick.froggy%3c%2fstring%3e%0a++%3c%21--achievement+Froggy+Centenary--%3e%0a++%3cstring+name%3d%22achievement_froggy_centenary%22+translatable%3d%22false%22%3eCgkIie-aybIZEAIQCg%3c%2fstring%3e%0a++%3c%21--achievement+Frog+of+the+Day--%3e%0a++%3cstring+name%3d%22achievement_frog_of_the_day%22+translatable%3d%22false%22%3eCgkIie-aybIZEAIQBQ%3c%2fstring%3e%0a++%3c%21--achievement+Frog+of+the+Week--%3e%0a++%3cstring+name%3d%22achievement_frog_of_the_week%22+translatable%3d%22false%22%3eCgkIie-aybIZEAIQBg%3c%2fstring%3e%0a++%3c%21--achievement+All-time+Frog--%3e%0a++%3cstring+name%3d%22achievement_alltime_frog%22+translatable%3d%22false%22%3eCgkIie-aybIZEAIQBw%3c%2fstring%3e%0a++%3c%21--achievement+%5bUNKNOWN+SIGNAL+DETECTED%5d--%3e%0a++%3cstring+name%3d%22achievement_unknown_signal_detected%22+translatable%3d%22false%22%3eCgkIie-aybIZEAIQCA%3c%2fstring%3e%0a++%3c%21--leaderboard+Top+Frog--%3e%0a++%3cstring+name%3d%22leaderboard_top_frog%22+translatable%3d%22false%22%3eCgkIie-aybIZEAIQAQ%3c%2fstring%3e%0a%3c%2fresources%3e
+and.ClientId=
+android.SetupDone=true

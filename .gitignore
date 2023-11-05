@@ -1,0 +1,35 @@
+# Unity ignores
+Builds/*
+/Library/*
+UserSettings/*
+Logs*
+Temp/*
+
+# Rider
+.idea*
+
+# Visual Studio
+*.csproj
+obj*
+*sln
+*suo
+.vs/
+.vscode*
+.vsconfig
+
+# OS-generated things
+.DS_Store
+Thumbs.db*
+*desktop.ini*
+
+# SublimeText files
+*sublime-*
+*.fbm/
+*.fbm.*
+
+# Unity plugins
+Output/*
+Recordings*
+
+# Froggy files
+Meta/nft.keystore
