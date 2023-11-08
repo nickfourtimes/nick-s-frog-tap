@@ -39,9 +39,7 @@ public class Leaderboard : MonoBehaviour {
 	#region UI METHODS
 
 	public void UiPressSignIn() {
-		#if UNITY_EDITOR
-		Authenticated();
-		#elif UNITY_ANDROID
+		#if UNITY_ANDROID
 		if (IsAuthenticated) {
 			if (!Application.isEditor) {
 				// PlayGamesPlatform.Instance.SignOut();
@@ -57,6 +55,16 @@ public class Leaderboard : MonoBehaviour {
 				}
 			});
 		}
+
+		#else
+
+		// probably have some check here, but i'm going to leave it on by default.
+		// i.e., on other social platforms, do some proper login handshake...
+		var canAuthenticate = true;
+		if (canAuthenticate) {
+			Authenticated();
+		}
+
 		#endif
 	}
 
@@ -147,10 +155,7 @@ public class Leaderboard : MonoBehaviour {
 
 	/// <summary> Periodically check authentication status </summary>
 	private IEnumerator I_CheckAuthentication() {
-		if (Application.isEditor) {
-			yield break;
-		}
-
+		#if UNITY_ANDROID
 		while (true) {
 			yield return new WaitForSeconds(1f);
 
@@ -160,6 +165,9 @@ public class Leaderboard : MonoBehaviour {
 				}
 			}
 		}
+		#endif
+
+		yield break;
 	}
 
 
