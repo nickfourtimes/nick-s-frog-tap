@@ -81,7 +81,11 @@ public class Purchasing : MonoBehaviour, IDetailedStoreListener {
 		if (Application.isEditor) {
 			_leaderboard.BoughtTaps(taps);
 		} else {
-			_controller.InitiatePurchase(iapID);
+			if (Utility.IsAndroid()) {
+				_controller.InitiatePurchase(iapID);
+			} else {
+				CompletePurchaseInternal(taps);
+			}
 		}
 	}
 
@@ -89,6 +93,11 @@ public class Purchasing : MonoBehaviour, IDetailedStoreListener {
 	private void AcceptWarning(bool accepted) {
 		warningAnimComp.SetBool(ShowCreditsID, false);
 		PlayerPrefs.SetInt(SAVE_STR_ACCEPTED_WARNING, accepted ? 1 : 0);
+	}
+
+
+	private void CompletePurchaseInternal(int numTaps) {
+		_leaderboard.BoughtTaps(numTaps);
 	}
 
 	#endregion
@@ -127,16 +136,16 @@ public class Purchasing : MonoBehaviour, IDetailedStoreListener {
 	public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs purchaseEvent) {
 		switch (purchaseEvent.purchasedProduct.definition.id) {
 			case IAP_ID_100_TAPS:
-				_leaderboard.BoughtTaps(100);
+				CompletePurchaseInternal(100);
 				break;
 			case IAP_ID_500_TAPS:
-				_leaderboard.BoughtTaps(500);
+				CompletePurchaseInternal(500);
 				break;
 			case IAP_ID_2000_TAPS:
-				_leaderboard.BoughtTaps(2000);
+				CompletePurchaseInternal(2000);
 				break;
 			case IAP_ID_10000_TAPS:
-				_leaderboard.BoughtTaps(10000);
+				CompletePurchaseInternal(10000);
 				break;
 			default:
 				Debug.LogError($"Received inconceivable purchase ID ({purchaseEvent.purchasedProduct.definition.id}).");
@@ -153,13 +162,15 @@ public class Purchasing : MonoBehaviour, IDetailedStoreListener {
 	#region UNITY EVENT FUNCTIONS
 
 	private void Start() {
-		var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
-		builder.AddProduct(IAP_ID_100_TAPS, ProductType.Consumable);
-		builder.AddProduct(IAP_ID_500_TAPS, ProductType.Consumable);
-		builder.AddProduct(IAP_ID_2000_TAPS, ProductType.Consumable);
-		builder.AddProduct(IAP_ID_10000_TAPS, ProductType.Consumable);
-
-		UnityPurchasing.Initialize(this, builder);
+		// create our IAPs
+		if (Utility.IsAndroid()) {
+			var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
+			builder.AddProduct(IAP_ID_100_TAPS, ProductType.Consumable);
+			builder.AddProduct(IAP_ID_500_TAPS, ProductType.Consumable);
+			builder.AddProduct(IAP_ID_2000_TAPS, ProductType.Consumable);
+			builder.AddProduct(IAP_ID_10000_TAPS, ProductType.Consumable);
+			UnityPurchasing.Initialize(this, builder);
+		}
 
 		_leaderboard = GetComponent<Leaderboard>();
 	}

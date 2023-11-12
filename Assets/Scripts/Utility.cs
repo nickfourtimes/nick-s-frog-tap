@@ -3,6 +3,14 @@ using UnityEngine;
 
 
 public class Utility : MonoBehaviour {
+
+	public static bool IsAndroid() {
+		#if UNITY_ANDROID
+		return true;
+		#else
+		return false;
+		#endif
+	}
 }
 
 

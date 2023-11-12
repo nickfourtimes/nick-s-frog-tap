@@ -60,17 +60,19 @@ public class Frog : MonoBehaviour {
 	#region CALLBACKS
 
 	private void OnAuthenticate() {
-		// get all leaderboard scores and see if we can find our own
-		var ldrAllTime = Social.CreateLeaderboard();
-		ldrAllTime.id = "leaderboardID";
-		ldrAllTime.timeScope = TimeScope.AllTime;
-		ldrAllTime.LoadScores((success) => {
-			if (success) {
-				Debug.Log($"Loaded user scores and current score is {ldrAllTime.localUserScore.value}.");
-				Taps = ldrAllTime.localUserScore.value;
-			}
-			scoreReadout.text = Taps.ToString("N0");
-		});
+		if (Utility.IsAndroid()) {
+			// get all leaderboard scores and see if we can find our own
+			var ldrAllTime = Social.CreateLeaderboard();
+			ldrAllTime.id = "leaderboardID";
+			ldrAllTime.timeScope = TimeScope.AllTime;
+			ldrAllTime.LoadScores((success) => {
+				if (success) {
+					Debug.Log($"Loaded user scores and current score is {ldrAllTime.localUserScore.value}.");
+					Taps = ldrAllTime.localUserScore.value;
+				}
+				scoreReadout.text = Taps.ToString("N0");
+			});
+		}
 	}
 
 
@@ -114,7 +116,7 @@ public class Frog : MonoBehaviour {
 
 	public void SetTaps(long taps, bool autoUpdateLeaderboard) {
 		// check for first cheevo
-		if (taps >= 100 && Taps < 100) {
+		if (Utility.IsAndroid() && taps >= 100 && Taps < 100) {
 			Social.Active.ReportProgress("achievementID", 100, (success) => {
 				Debug.Log("Big Big Hundo");
 			});
@@ -124,9 +126,11 @@ public class Frog : MonoBehaviour {
 
 		if (Taps >= MAX_TAPS) {
 			Taps = MAX_TAPS;
-			Social.Active.ReportProgress("achievementID", 100, (success) => {
-				Debug.Log("Well, congratulations I guess.");
-			});
+			if (Utility.IsAndroid()) {
+				Social.Active.ReportProgress("achievementID", 100, (success) => {
+					Debug.Log("Well, congratulations I guess.");
+				});
+			}
 		}
 
 		// save current points
@@ -135,7 +139,7 @@ public class Frog : MonoBehaviour {
 		#endif
 
 		// check for occasional uploads to leaderboards
-		if (autoUpdateLeaderboard && !Application.isEditor) {
+		if (Utility.IsAndroid() && !Application.isEditor && autoUpdateLeaderboard) {
 			if (Taps % 50 == 0) {
 				Social.Active.ReportScore(Taps, "achievementID", (success) => {
 					// noop
