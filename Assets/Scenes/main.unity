@@ -1565,6 +1565,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   postSignInButtonGroup: {fileID: 158737532}
+  btnLeaderboards: {fileID: 1470285192}
+  btnAchievements: {fileID: 800965940}
   menuAnimComp: {fileID: 1183612349}
   creditsAnimComp: {fileID: 1235148645}
 --- !u!82 &558591896

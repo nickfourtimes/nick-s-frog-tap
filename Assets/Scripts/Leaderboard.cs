@@ -138,11 +138,11 @@ public class Leaderboard : MonoBehaviour {
 		OnAuthenticate?.Invoke();
 		Debug.Log("Successfully authenticated.");
 
-		if (!_didFirstAuth) {
-			_didFirstAuth = true;
-			StartCoroutine(I_CheckAuthentication());
-			CheckUserScores();
-		}
+		if (_didFirstAuth) return;
+
+		_didFirstAuth = true;
+		StartCoroutine(I_CheckAuthentication());
+		CheckUserScores();
 	}
 
 

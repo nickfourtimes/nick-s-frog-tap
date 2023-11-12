@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class MainUI : MonoBehaviour {
@@ -14,6 +15,8 @@ public class MainUI : MonoBehaviour {
 	#region VARIABLES & PROPERTIES
 
 	[SerializeField] private CanvasGroup postSignInButtonGroup;
+	[SerializeField] private Button btnLeaderboards;
+	[SerializeField] private Button btnAchievements;
 
 	[SerializeField] private Animator menuAnimComp;
 
@@ -68,6 +71,11 @@ public class MainUI : MonoBehaviour {
 		}
 
 		postSignInButtonGroup.interactable = _leaderboard.IsAuthenticated;
+
+		if (!Utility.IsAndroid()) {
+			btnLeaderboards.interactable = false;
+			btnAchievements.interactable = false;
+		}
 	}
 
 
