@@ -29,8 +29,9 @@ public class Leaderboard : MonoBehaviour {
 
 	// misc state
 	private bool _didFirstAuth;
-	private Frog _frog;
 	private AudioSource _srcAudio;
+	private Frog _frog;
+	private MainUI _mainUI;
 
 	#endregion
 
@@ -57,6 +58,8 @@ public class Leaderboard : MonoBehaviour {
 		}
 
 		#else
+
+		_mainUI.PlayButtonSound();
 
 		// probably have some check here, but i'm going to leave it on by default.
 		// i.e., on other social platforms, do some proper login handshake...
@@ -225,8 +228,8 @@ public class Leaderboard : MonoBehaviour {
 		Initialise();
 
 		_frog = FindObjectOfType<Frog>();
-
 		_srcAudio = GetComponent<AudioSource>();
+		_mainUI = GetComponent<MainUI>();
 	}
 
 	#endregion

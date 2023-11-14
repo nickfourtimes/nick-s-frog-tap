@@ -1567,6 +1567,12 @@ MonoBehaviour:
   postSignInButtonGroup: {fileID: 158737532}
   btnLeaderboards: {fileID: 1470285192}
   btnAchievements: {fileID: 800965940}
+  uiTapSounds:
+  - {fileID: 8300000, guid: ad1714fbf1c6e4b79858df3eea1c1b1d, type: 3}
+  - {fileID: 8300000, guid: 4de165f6e891b4098ae99bf94db5b596, type: 3}
+  - {fileID: 8300000, guid: cc7ffca41a00c4d159476b5876bbcc82, type: 3}
+  - {fileID: 8300000, guid: 6a513f1b2c9b24a62b3f7dce0570f128, type: 3}
+  - {fileID: 8300000, guid: 2cbcf366becd24817afa4f3cc43b8f48, type: 3}
   menuAnimComp: {fileID: 1183612349}
   creditsAnimComp: {fileID: 1235148645}
 --- !u!82 &558591896

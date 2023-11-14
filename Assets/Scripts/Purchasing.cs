@@ -28,6 +28,7 @@ public class Purchasing : MonoBehaviour, IDetailedStoreListener {
 	private IExtensionProvider _extensions;
 
 	private Leaderboard _leaderboard;
+	private MainUI _mainUI;
 
 	#endregion
 
@@ -56,11 +57,13 @@ public class Purchasing : MonoBehaviour, IDetailedStoreListener {
 
 
 	public void UiPressAcceptPurchaseWarning() {
+		_mainUI.PlayButtonSound();
 		AcceptWarning(true);
 	}
 
 
 	public void UiPressRefusePurchaseWarning() {
+		_mainUI.PlayButtonSound();
 		AcceptWarning(false);
 	}
 
@@ -173,6 +176,7 @@ public class Purchasing : MonoBehaviour, IDetailedStoreListener {
 		}
 
 		_leaderboard = GetComponent<Leaderboard>();
+		_mainUI = GetComponent<MainUI>();
 	}
 
 	#endregion
