@@ -33,3 +33,7 @@ Recordings*
 
 # Froggy files
 Meta/nft.keystore
+
+# CircleCI & GameCI
+/[Aa]rtifacts/
+/[Cc]odeCoverage/
